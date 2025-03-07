@@ -21,3 +21,24 @@ predy = m*x + c
 plt.scatter(x,y)
 plt.plot(x, predy)
 plt.show()
+
+#evaluating the model
+#RMSE - Root Mean Squared Error sqrt( sum( (p – yi)^2 )/n )
+error = np.sqrt(np.mean(((predy - y) ** 2)))
+print(error)
+#using library
+from sklearn.linear_model import LinearRegression
+x = x.reshape(-1, 1)
+lr = LinearRegression()
+lr.fit(x, y)
+print("Slope: ", lr.coef_)
+print("Intercept: ", lr.intercept_)
+predy = lr.predict(x)
+print(predy)
+plt.scatter(x, y)
+plt.plot(x, predy)
+plt.show()
+
+from sklearn.metrics import root_mean_squared_error
+errory = root_mean_squared_error(y, predy)
+print(errory)
